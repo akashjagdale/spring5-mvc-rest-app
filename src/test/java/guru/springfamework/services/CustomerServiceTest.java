@@ -101,4 +101,11 @@ public class CustomerServiceTest {
         assertEquals(customerDTO.getFirstName(), savedDTO.getFirstName());
         assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
     }
+
+    @Test
+    public void testDeleteCustomerById() {
+        customerService.deleteCustomerById(ID);
+
+        Mockito.verify(customerRepository, Mockito.times(1)).deleteById(ArgumentMatchers.anyLong());
+    }
 }
