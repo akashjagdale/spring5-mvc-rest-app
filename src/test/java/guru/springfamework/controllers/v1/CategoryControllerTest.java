@@ -39,7 +39,6 @@ public class CategoryControllerTest {
         MockitoAnnotations.initMocks(this);
 
         mockMvc = MockMvcBuilders.standaloneSetup(categoryController).build();
-
     }
 
     @Test
