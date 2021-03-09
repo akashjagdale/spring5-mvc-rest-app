@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2021-03-09T19:39:23+0530",
-    comments = "version: 1.3.1.Final, compiler: javac, environment: Java 1.8.0_261 (Oracle Corporation)"
+    date = "2021-03-09T22:14:23+0530",
+    comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.8 (Oracle Corporation)"
 )
 @Component
 public class CustomerMapperImpl implements CustomerMapper {
@@ -25,5 +25,19 @@ public class CustomerMapperImpl implements CustomerMapper {
         customerDTO.setLastName( customer.getLastName() );
 
         return customerDTO;
+    }
+
+    @Override
+    public Customer customerDTOToCustomer(CustomerDTO customerDTO) {
+        if ( customerDTO == null ) {
+            return null;
+        }
+
+        Customer customer = new Customer();
+
+        customer.setFirstName( customerDTO.getFirstName() );
+        customer.setLastName( customerDTO.getLastName() );
+
+        return customer;
     }
 }
