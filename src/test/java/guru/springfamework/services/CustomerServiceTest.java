@@ -82,4 +82,23 @@ public class CustomerServiceTest {
         assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
 
     }
+
+    @Test
+    public void saveCustomerByDTO() {
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setFirstName(FIRST_NAME);
+        customerDTO.setLastName(LAST_NAME);
+
+        Customer savedCustomer = new Customer();
+        savedCustomer.setFirstName(customerDTO.getFirstName());
+        savedCustomer.setLastName(customerDTO.getLastName());
+        savedCustomer.setId(ID);
+
+        Mockito.when(customerRepository.save(ArgumentMatchers.any(Customer.class))).thenReturn(savedCustomer);
+
+        CustomerDTO savedDTO = customerService.saveCustomerByDTO(1L, customerDTO);
+
+        assertEquals(customerDTO.getFirstName(), savedDTO.getFirstName());
+        assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
+    }
 }
