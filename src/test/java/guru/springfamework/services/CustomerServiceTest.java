@@ -23,6 +23,7 @@ public class CustomerServiceTest {
     public static final String FIRST_NAME = "Akash";
     public static final String LAST_NAME = "Jagdale";
     public static final long ID = 1L;
+    public static final String CUSTOMER_URL = "/api/v1/customers/1";
 
     CustomerService customerService;
 
@@ -57,7 +58,7 @@ public class CustomerServiceTest {
 
         Mockito.when(customerRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(customer));
 
-        CustomerDTO customerDTO = customerService.getCustomerById(1L);
+        CustomerDTO customerDTO = customerService.getCustomerById(ID);
 
         assertEquals(LAST_NAME, customerDTO.getLastName());
         assertEquals(FIRST_NAME, customerDTO.getFirstName());
@@ -79,7 +80,7 @@ public class CustomerServiceTest {
         CustomerDTO savedDTO = customerService.createNewCustomer(customerDTO);
 
         assertEquals(customerDTO.getFirstName(), savedDTO.getFirstName());
-        assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
+        assertEquals(CUSTOMER_URL, savedDTO.getCustomerUrl());
 
     }
 
@@ -96,10 +97,10 @@ public class CustomerServiceTest {
 
         Mockito.when(customerRepository.save(ArgumentMatchers.any(Customer.class))).thenReturn(savedCustomer);
 
-        CustomerDTO savedDTO = customerService.saveCustomerByDTO(1L, customerDTO);
+        CustomerDTO savedDTO = customerService.saveCustomerByDTO(ID, customerDTO);
 
         assertEquals(customerDTO.getFirstName(), savedDTO.getFirstName());
-        assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
+        assertEquals(CUSTOMER_URL, savedDTO.getCustomerUrl());
     }
 
     @Test

@@ -78,7 +78,7 @@ public class CustomerControllerTest {
         customer1.setLastName(LAST_NAME);
         customer1.setCustomerUrl(CUSTOMER_URL);
 
-        when(customerService.getCustomerById(1L)).thenReturn(customer1);
+        when(customerService.getCustomerById(anyLong())).thenReturn(customer1);
 
         mockMvc.perform(get(CUSTOMER_URL)
                 .contentType(MediaType.APPLICATION_JSON))
