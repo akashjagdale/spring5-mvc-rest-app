@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/rest-model/rest-model.iml" filepath="$PROJECT_DIR$/rest-model/rest-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-mvc-rest/spring-mvc-rest.iml" filepath="$PROJECT_DIR$/spring-mvc-rest/spring-mvc-rest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/spring5-mvc-rest-app.iml" filepath="$PROJECT_DIR$/.idea/spring5-mvc-rest-app.iml" />
     </modules>
   </component>

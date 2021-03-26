@@ -3,7 +3,13 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for spring5-mvc-rest" enabled="true">
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="rest-model" />
+      </profile>
+      <profile name="Annotation profile for spring5-mvc-rest-parent" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -23,16 +29,20 @@
           <entry name="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.0.3.RELEASE/spring-context-4.0.3.RELEASE.jar" />
           <entry name="$MAVEN_REPOSITORY$/joda-time/joda-time/2.9/joda-time-2.9.jar" />
         </processorPath>
-        <module name="spring5-mvc-rest-app" />
+        <module name="spring-mvc-rest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="rest-model" target="1.8" />
+      <module name="spring-mvc-rest" target="1.8" />
       <module name="spring5-mvc-rest-app" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="spring5-mvc-rest-app" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="rest-model" options="-parameters" />
+      <module name="spring-mvc-rest" options="-parameters -Amapstruct.defaultComponentModel=spring" />
+      <module name="spring5-mvc-rest-app" options="" />
     </option>
   </component>
 </project>
