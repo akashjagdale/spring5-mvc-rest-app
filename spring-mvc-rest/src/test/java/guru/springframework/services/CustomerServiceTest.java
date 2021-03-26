@@ -1,8 +1,8 @@
 package guru.springframework.services;
 
 import guru.springframework.api.v1.mapper.CustomerMapper;
-import guru.springframework.api.v1.model.CustomerDTO;
 import guru.springframework.domain.Customer;
+import guru.springframework.model.CustomerDTO;
 import guru.springframework.repositories.CustomerRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -59,26 +59,26 @@ public class CustomerServiceTest {
 
         CustomerDTO customerDTO = customerService.getCustomerById(1L);
 
-        assertEquals(LAST_NAME, customerDTO.getLastName());
-        assertEquals(FIRST_NAME, customerDTO.getFirstName());
+        assertEquals(LAST_NAME, customerDTO.getLastname());
+        assertEquals(FIRST_NAME, customerDTO.getFirstname());
     }
 
     @Test
     public void createNewCustomer() {
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName(FIRST_NAME);
-        customerDTO.setLastName(LAST_NAME);
+        customerDTO.setFirstname(FIRST_NAME);
+        customerDTO.setLastname(LAST_NAME);
 
         Customer savedCustomer = new Customer();
-        savedCustomer.setFirstName(customerDTO.getFirstName());
-        savedCustomer.setLastName(customerDTO.getLastName());
+        savedCustomer.setFirstName(customerDTO.getFirstname());
+        savedCustomer.setLastName(customerDTO.getLastname());
         savedCustomer.setId(ID);
 
         Mockito.when(customerRepository.save(ArgumentMatchers.any(Customer.class))).thenReturn(savedCustomer);
 
         CustomerDTO savedDTO = customerService.createNewCustomer(customerDTO);
 
-        assertEquals(customerDTO.getFirstName(), savedDTO.getFirstName());
+        assertEquals(customerDTO.getFirstname(), savedDTO.getFirstname());
         assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
 
     }
@@ -86,19 +86,19 @@ public class CustomerServiceTest {
     @Test
     public void saveCustomerByDTO() {
         CustomerDTO customerDTO = new CustomerDTO();
-        customerDTO.setFirstName(FIRST_NAME);
-        customerDTO.setLastName(LAST_NAME);
+        customerDTO.setFirstname(FIRST_NAME);
+        customerDTO.setLastname(LAST_NAME);
 
         Customer savedCustomer = new Customer();
-        savedCustomer.setFirstName(customerDTO.getFirstName());
-        savedCustomer.setLastName(customerDTO.getLastName());
+        savedCustomer.setFirstName(customerDTO.getFirstname());
+        savedCustomer.setLastName(customerDTO.getLastname());
         savedCustomer.setId(ID);
 
         Mockito.when(customerRepository.save(ArgumentMatchers.any(Customer.class))).thenReturn(savedCustomer);
 
         CustomerDTO savedDTO = customerService.saveCustomerByDTO(1L, customerDTO);
 
-        assertEquals(customerDTO.getFirstName(), savedDTO.getFirstName());
+        assertEquals(customerDTO.getFirstname(), savedDTO.getFirstname());
         assertEquals("/api/v1/customers/1", savedDTO.getCustomerUrl());
     }
 
