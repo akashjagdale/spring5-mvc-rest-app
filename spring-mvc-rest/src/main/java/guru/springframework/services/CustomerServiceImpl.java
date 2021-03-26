@@ -76,11 +76,11 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findById(id)
                 .map(customer -> {
                     if (customerDTO.getFirstname() != null) {
-                        customer.setFirstName(customerDTO.getFirstname());
+                        customer.setFirstname(customerDTO.getFirstname());
                     }
 
                     if (customerDTO.getLastname() != null) {
-                        customer.setLastName(customerDTO.getLastname());
+                        customer.setLastname(customerDTO.getLastname());
                     }
 
                     Customer patchedCustomer = customerRepository.save(customer);

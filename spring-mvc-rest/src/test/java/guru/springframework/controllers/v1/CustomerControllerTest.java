@@ -1,6 +1,6 @@
 package guru.springframework.controllers.v1;
 
-import guru.springframework.api.v1.model.CustomerDTO;
+import guru.springframework.model.CustomerDTO;
 import guru.springframework.services.CustomerService;
 import guru.springframework.services.ResourceNotFoundException;
 import org.junit.Before;
@@ -52,13 +52,13 @@ public class CustomerControllerTest {
     @Test
     public void getAllCustomers() throws Exception {
         CustomerDTO customer1 = new CustomerDTO();
-        customer1.setFirstName(FIRST_NAME);
-        customer1.setLastName(LAST_NAME);
+        customer1.setFirstname(FIRST_NAME);
+        customer1.setLastname(LAST_NAME);
 
 
         CustomerDTO customer2 = new CustomerDTO();
-        customer2.setFirstName("Jonny");
-        customer2.setLastName("Depp");
+        customer2.setFirstname("Jonny");
+        customer2.setLastname("Depp");
 
 
         List<CustomerDTO> customers = Arrays.asList(customer1, customer2);
@@ -75,8 +75,8 @@ public class CustomerControllerTest {
     @Test
     public void getCustomerById() throws Exception {
         CustomerDTO customer1 = new CustomerDTO();
-        customer1.setFirstName(FIRST_NAME);
-        customer1.setLastName(LAST_NAME);
+        customer1.setFirstname(FIRST_NAME);
+        customer1.setLastname(LAST_NAME);
         customer1.setCustomerUrl(CUSTOMER_URL);
 
         when(customerService.getCustomerById(1L)).thenReturn(customer1);
@@ -85,42 +85,42 @@ public class CustomerControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName", equalTo(FIRST_NAME)));
+                .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)));
     }
 
     @Test
     public void createNewCustomer() throws Exception {
         CustomerDTO customer = new CustomerDTO();
-        customer.setFirstName(FIRST_NAME);
-        customer.setLastName(LAST_NAME);
+        customer.setFirstname(FIRST_NAME);
+        customer.setLastname(LAST_NAME);
 
         CustomerDTO returnedDTO = new CustomerDTO();
-        returnedDTO.setFirstName(customer.getFirstName());
-        returnedDTO.setLastName(customer.getLastName());
+        returnedDTO.setFirstname(customer.getFirstname());
+        returnedDTO.setLastname(customer.getLastname());
         returnedDTO.setCustomerUrl(CUSTOMER_URL);
 
-        Mockito.when(customerService.createNewCustomer(any(CustomerDTO.class))).thenReturn(returnedDTO);
+        when(customerService.createNewCustomer(any(CustomerDTO.class))).thenReturn(returnedDTO);
 
         mockMvc.perform(post("/api/v1/customers/")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.firstName", equalTo(FIRST_NAME)))
-                .andExpect(jsonPath("$.lastName", equalTo(LAST_NAME)))
-                .andExpect(jsonPath("$.customer_url", equalTo(CUSTOMER_URL)));
+                .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)))
+                .andExpect(jsonPath("$.lastname", equalTo(LAST_NAME)))
+                .andExpect(jsonPath("$.customerUrl", equalTo(CUSTOMER_URL)));
     }
 
     @Test
     public void updateCustomerTest() throws Exception {
 
         CustomerDTO customer = new CustomerDTO();
-        customer.setFirstName(FIRST_NAME);
-        customer.setLastName(LAST_NAME);
+        customer.setFirstname(FIRST_NAME);
+        customer.setLastname(LAST_NAME);
 
         CustomerDTO returnedDTO = new CustomerDTO();
-        returnedDTO.setFirstName(customer.getFirstName());
-        returnedDTO.setLastName(customer.getLastName());
+        returnedDTO.setFirstname(customer.getFirstname());
+        returnedDTO.setLastname(customer.getLastname());
         returnedDTO.setCustomerUrl(CUSTOMER_URL);
 
         Mockito.when(customerService.saveCustomerByDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnedDTO);
@@ -130,21 +130,21 @@ public class CustomerControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName", equalTo(FIRST_NAME)))
-                .andExpect(jsonPath("$.lastName", equalTo(LAST_NAME)))
-                .andExpect(jsonPath("$.customer_url", equalTo(CUSTOMER_URL)));
+                .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)))
+                .andExpect(jsonPath("$.lastname", equalTo(LAST_NAME)))
+                .andExpect(jsonPath("$.customerUrl", equalTo(CUSTOMER_URL)));
 
     }
 
     @Test
     public void testPatchCustomer() throws Exception {
         CustomerDTO customer = new CustomerDTO();
-        customer.setFirstName(FIRST_NAME);
-        customer.setLastName(LAST_NAME);
+        customer.setFirstname(FIRST_NAME);
+        customer.setLastname(LAST_NAME);
 
         CustomerDTO returnedDTO = new CustomerDTO();
-        returnedDTO.setFirstName(customer.getFirstName());
-        returnedDTO.setLastName("Some Last Name");
+        returnedDTO.setFirstname(customer.getFirstname());
+        returnedDTO.setLastname("Some Last Name");
         returnedDTO.setCustomerUrl(CUSTOMER_URL);
 
         Mockito.when(customerService.patchCustomer(anyLong(), any(CustomerDTO.class))).thenReturn(returnedDTO);
@@ -154,9 +154,9 @@ public class CustomerControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName", equalTo(FIRST_NAME)))
-                .andExpect(jsonPath("$.lastName", equalTo("Some Last Name")))
-                .andExpect(jsonPath("$.customer_url", equalTo(CUSTOMER_URL)));
+                .andExpect(jsonPath("$.firstname", equalTo(FIRST_NAME)))
+                .andExpect(jsonPath("$.lastname", equalTo("Some Last Name")))
+                .andExpect(jsonPath("$.customerUrl", equalTo(CUSTOMER_URL)));
     }
 
     @Test

@@ -52,8 +52,8 @@ public class CustomerServiceTest {
     public void getCustomerById() {
         Customer customer = new Customer();
         customer.setId(ID);
-        customer.setFirstName(FIRST_NAME);
-        customer.setLastName(LAST_NAME);
+        customer.setFirstname(FIRST_NAME);
+        customer.setLastname(LAST_NAME);
 
         Mockito.when(customerRepository.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(customer));
 
@@ -70,8 +70,8 @@ public class CustomerServiceTest {
         customerDTO.setLastname(LAST_NAME);
 
         Customer savedCustomer = new Customer();
-        savedCustomer.setFirstName(customerDTO.getFirstname());
-        savedCustomer.setLastName(customerDTO.getLastname());
+        savedCustomer.setFirstname(customerDTO.getFirstname());
+        savedCustomer.setLastname(customerDTO.getLastname());
         savedCustomer.setId(ID);
 
         Mockito.when(customerRepository.save(ArgumentMatchers.any(Customer.class))).thenReturn(savedCustomer);
@@ -90,8 +90,8 @@ public class CustomerServiceTest {
         customerDTO.setLastname(LAST_NAME);
 
         Customer savedCustomer = new Customer();
-        savedCustomer.setFirstName(customerDTO.getFirstname());
-        savedCustomer.setLastName(customerDTO.getLastname());
+        savedCustomer.setFirstname(customerDTO.getFirstname());
+        savedCustomer.setLastname(customerDTO.getLastname());
         savedCustomer.setId(ID);
 
         Mockito.when(customerRepository.save(ArgumentMatchers.any(Customer.class))).thenReturn(savedCustomer);

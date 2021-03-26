@@ -28,16 +28,16 @@ public class Bootstrap implements CommandLineRunner {
     private void loadCustomers() {
         /* Bootstrapping Customers*/
         Customer aj = new Customer();
-        aj.setFirstName("Akash");
-        aj.setLastName("Jagdale");
+        aj.setFirstname("Akash");
+        aj.setLastname("Jagdale");
 
         Customer jd = new Customer();
-        jd.setFirstName("Jonny");
-        jd.setLastName("Depp");
+        jd.setFirstname("Jonny");
+        jd.setLastname("Depp");
 
         Customer hp = new Customer();
-        hp.setFirstName("Harry");
-        hp.setLastName("Potter");
+        hp.setFirstname("Harry");
+        hp.setLastname("Potter");
 
         customerRepository.save(aj);
         customerRepository.save(jd);
