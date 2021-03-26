@@ -66,6 +66,7 @@ public class CustomerControllerTest {
         when(customerService.getCustomers()).thenReturn(customers);
 
         mockMvc.perform(get("/api/v1/customers/")
+                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.customers", hasSize(2)));
@@ -81,6 +82,7 @@ public class CustomerControllerTest {
         when(customerService.getCustomerById(1L)).thenReturn(customer1);
 
         mockMvc.perform(get(CUSTOMER_URL)
+                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", equalTo(FIRST_NAME)));
@@ -100,6 +102,7 @@ public class CustomerControllerTest {
         Mockito.when(customerService.createNewCustomer(any(CustomerDTO.class))).thenReturn(returnedDTO);
 
         mockMvc.perform(post("/api/v1/customers/")
+                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isCreated())
@@ -123,6 +126,7 @@ public class CustomerControllerTest {
         Mockito.when(customerService.saveCustomerByDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnedDTO);
 
         mockMvc.perform(put("/api/v1/customers/1")
+                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isOk())
@@ -146,6 +150,7 @@ public class CustomerControllerTest {
         Mockito.when(customerService.patchCustomer(anyLong(), any(CustomerDTO.class))).thenReturn(returnedDTO);
 
         mockMvc.perform(patch("/api/v1/customers/1")
+                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customer)))
                 .andExpect(status().isOk())
