@@ -10,6 +10,12 @@
 
     <name>spring5-mvc-model</name>
     <description>Demo project for Spring Boot</description>
+    <dependencies>
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+    </dependencies>
 
     <parent>
         <groupId>guru.springframework</groupId>
@@ -17,4 +23,30 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <!--<dependencies>-->
+
+    <!--</dependencies>-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxb2-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>xjc</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- The package of your generated sources -->
+                    <packageName>guru.springframework.model</packageName>
+                    <sources>
+                        <source>src/main/resources/xsd</source>
+                    </sources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
